@@ -1,46 +1,63 @@
-# Getting Started with Create React App
+# Rarimo getting started application
+
+This application shows how you can use the Rarimo SDK to connect to browser-based wallets.
+
+## Running the application
+
+To set up this application locally, follow these steps:
+
+1. Make sure that Node.JS, NPX, and Yarn are installed.
+
+1. Install one of these wallets in your web browser if you don't have one already:
+
+   - Coinbase
+   - Metamask
+   - NEAR
+   - Phantom
+   - Solflare
+
+1. Clone this repository.
+
+1. In a terminal in the repository, install the dependencies by running this command:
+
+   ```shell
+   yarn install
+   ```
+
+1. In the file `src/App.tsx`, set the wallet to use by changing the wallet provider from `MetamaskProvider` to your wallet.
+For example, to make the application use Coinbase wallets, change `MetamaskProvider` to `CoinbaseProvider`, as in this example:
+
+   ```tsx
+   import { CoinbaseProvider } from '@rarimo/provider'
+   import { useProvider } from '@rarimo/react-provider'
+
+   function App() {
+     const { provider } = useProvider(CoinbaseProvider)
+
+     provider?.connect()
+     console.log(provider?.address)
+
+     return <div className="App">Wallet address: {provider?.address}</div>
+   }
+
+   export default App
+   ```
+
+   The SDK supports these wallets:
+   - [`CoinbaseProvider`](https://rarimo.github.io/js-sdk/classes/_rarimo_provider.CoinbaseProvider.html): Coinbase wallets
+   - [`MetamaskProvider`](https://rarimo.github.io/js-sdk/classes/_rarimo_provider.MetamaskProvider.html): Metamask wallets
+   - [`NearProvider`](https://rarimo.github.io/js-sdk/classes/_rarimo_provider.NearProvider.html): NEAR wallets
+   - [`PhantomProvider`](https://rarimo.github.io/js-sdk/classes/_rarimo_provider.PhantomProvider.html): Phantom wallets
+   - [`SolflareProvider`](https://rarimo.github.io/js-sdk/classes/_rarimo_provider.SolflareProvider.html): Solflare wallets
+
+1. In the terminal, run `yarn start` and wait for the application to start.
+The application opens automatically in your default web browser, or you can open the page in a web browser by going to the URL `http://localhost:3000`.
+
+1. When the application prompts you to connect your wallet, log in to your wallet and allow the connection.
+
+If the application is working correctly, it prints the address of your wallet on the page.
+
+## References
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
